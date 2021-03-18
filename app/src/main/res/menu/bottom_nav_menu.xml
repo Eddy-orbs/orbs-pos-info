@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@android:drawable/ic_dialog_info"
+        android:title="@string/title_p1_pos" />
+
+    <item
+        android:id="@+id/navigation_dashboard"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="@string/title_p2_events" />
+
+    <item
+        android:id="@+id/navigation_calculator"
+        android:icon="@drawable/ic_calc"
+        android:title="@string/title_p3_gas" />
+
+</menu>

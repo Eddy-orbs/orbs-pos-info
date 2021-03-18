@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <color name="orbsColorPrimary">#333333</color>
+    <color name="orbsColorPrimaryDark">#000000</color>
+    <color name="orbsColorAccent">#03DAC5</color>
+
+    <color name="bg_round_rect">#DEEBF7</color>
+    <color name="textColor">#000000</color>
+    <color name="buttonText">#FFFFFF</color>
+
+    <color name="taleLine">#777777</color>
+    <color name="taleLine2">#545454</color>
+    <color name="button">#8FAADC</color>
+    <color name="buttonSelect">#AFDAFF</color>
+
+    <color name="button2">#DBDBDB</color>
+    <color name="button2Select">#595959</color>
+
+</resources>

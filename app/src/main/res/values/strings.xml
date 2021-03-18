@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">ORBS PoS Info</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="title_p1_pos">PoS Info</string>
+    <string name="title_p2_events">PoS Events</string>
+    <string name="title_p3_gas">PoS Calc</string>
+
+    <string name="loading_app_update_failed">Please update app and try again.</string>
+
+</resources>
