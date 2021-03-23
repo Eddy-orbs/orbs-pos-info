@@ -148,4 +148,26 @@ public class RestApiManager {
 
         get(API.ETHERSCAN_API_URL, params, httpResponseHandler);
     }
+
+    public void getCoinPriceUSD() {
+        JsonHttpResponseHandler httpResponseHandler = new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                double eth, orbs;
+                eth = response.optJSONObject("ETH").optDouble("USD");
+                orbs = response.optJSONObject("ORBS").optDouble("USD");
+
+                Log.d(LOG_TAG, "getAllStakingEvents: onSuccess - ETHUSD:" + eth + "/ ORBSUSD:" + orbs);
+
+                InfoProvider.getInstance().updateTokenPrice(eth, orbs);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+            }
+        };
+
+        get(API.TOKEN_PRICE_API_URL, null, httpResponseHandler);
+    }
 }

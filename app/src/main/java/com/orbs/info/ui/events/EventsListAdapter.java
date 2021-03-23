@@ -2,6 +2,7 @@ package com.orbs.info.ui.events;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -20,20 +21,22 @@ import org.web3j.utils.Convert;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
-
 
 public class EventsListAdapter extends ArrayAdapter<JSONObject> {
 
-    private final String LOG_TAG = "FaqListAdapter";
+    private final String LOG_TAG = "EventsListAdapter";
+
+    private HashMap<Integer, Integer> visibleMap;
 
     public EventsListAdapter(Context context, ArrayList<JSONObject> eventsList)
     {
         super(context, android.R.layout.simple_list_item_1, eventsList.toArray(new JSONObject[eventsList.size()]));
         Log.d(LOG_TAG, "EventsListAdapter() - " + eventsList);
+        visibleMap = new HashMap<Integer, Integer>();
     }
 
     @Override
@@ -47,10 +50,12 @@ public class EventsListAdapter extends ArrayAdapter<JSONObject> {
         }
 
         JSONObject eventItem = getItem(position);
+        final int currentVisible = visibleMap.getOrDefault(position, View.GONE);
 
-        //Log.d(LOG_TAG, "getView() - " + position);
+        Log.d(LOG_TAG, "getView() - " + position + " / " + currentVisible);
 
-        TextView textTitle = convertView.findViewById(R.id.text_title_address);
+        TextView textTitle1 = convertView.findViewById(R.id.text_title_1);
+        TextView textTitle2 = convertView.findViewById(R.id.text_title_2);
         TextView textAddress = convertView.findViewById(R.id.text_address);
         TextView textTime = convertView.findViewById(R.id.text_time);
         TextView textTxID = convertView.findViewById(R.id.text_txid);
@@ -61,7 +66,7 @@ public class EventsListAdapter extends ArrayAdapter<JSONObject> {
         String jsonTimeStamp = eventItem.optString("timeStamp").substring(2); // remove "0x"
         String jsonBlock = eventItem.optString("blockNumber").substring(2); // remove "0x"
         String timeString = getDate((new BigInteger(jsonTimeStamp, 16)).longValue());
-        timeString += " UTC (# " + (new BigInteger(jsonBlock, 16).intValue()) + ")";
+        String timeString2 = timeString + " UTC (# " + (new BigInteger(jsonBlock, 16).intValue()) + ")";
 
         String topic0 = eventItem.optJSONArray("topics").optString(0);
         String data1 = eventItem.optString("data").substring(2,66);
@@ -77,32 +82,35 @@ public class EventsListAdapter extends ArrayAdapter<JSONObject> {
         } else {
             actionType = "WITHDRAW";
         }
-        textAction.setText(actionType);
 
-        textTitle.setText(address);
-        textTime.setText(timeString);
-        textAddress.setText(address); // TODO: link to etherscan
+        textTitle1.setText(timeString);
+        textTitle2.setText(String.format("%,d", amount.longValue()) + " ORBS");
+
+        textAction.setText(actionType);
+        textTime.setText(timeString2);
+        textAddress.setText(address);
+        textAddress.setPaintFlags(textAddress.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
         textTxID.setText(eventItem.optString("transactionHash")); // TODO: link to etherscan
+        textTxID.setPaintFlags(textTxID.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         textAmount.setText(String.format("%,d", amount.longValue()) + " ORBS");
 
         View layoutEventItem = convertView.findViewById(R.id.row_title);
         final View layoutContents = convertView.findViewById(R.id.row_contents);
+        layoutContents.setVisibility(currentVisible);
 
-        layoutEventItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(LOG_TAG, "onClick() - " + position);
-                toggleAnswerRow(layoutContents);
-            }
+        layoutEventItem.setOnClickListener(v -> {
+            Log.d(LOG_TAG, "onClick() Title - " + position);
+                toggleAnswerRow(layoutContents, position);
         });
 
-        layoutContents.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(LOG_TAG, "onClick() - " + position);
-                toggleAnswerRow(layoutContents);
-            }
-        });
+//        layoutContents.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Log.d(LOG_TAG, "onClick() Body - " + position);
+//                toggleAnswerRow(layoutContents);
+//            }
+//        });
 
         textTxID.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,7 +148,12 @@ public class EventsListAdapter extends ArrayAdapter<JSONObject> {
         return date;
     }
 
-    private void toggleAnswerRow(View view) {
+    private void toggleAnswerRow(View view, int position) {
+        if (view.getVisibility() == View.VISIBLE) {
+            visibleMap.put(position, View.GONE);
+        } else {
+            visibleMap.put(position, View.VISIBLE);
+        }
         Util.toggleViewWithSlideAnimation(view);
     }
 }

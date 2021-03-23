@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
+import com.orbs.info.ui.calculation.CalculationFragment;
 import com.orbs.info.ui.events.EventsFragment;
 import com.orbs.info.ui.home.HomeFragment;
 import com.orbs.info.util.Util;
@@ -32,9 +33,15 @@ public class InfoProvider {
 
     private int cachedNumOfGuardians = 0;
     private long cachedTotalCommitteeStake = 0;
+    private double cachedRewardsRate = 0;
+
+    private double cachedETHprice = 0;
+    private double cachedORBSprice = 0;
+    private int cachedGasFee = 0;
 
     private Handler homeCallback = null;
     private Handler eventsCallback = null;
+    private Handler calculatorCallback = null;
 
     private int cachedDays;
 
@@ -48,16 +55,27 @@ public class InfoProvider {
         return mInstance;
     }
 
-    private void loadAllInfo() {
+    public void loadAllInfo() {
         Log.d(LOG_TAG, "loadAllInfo");
 
         cachedTotalStake = Web3ApiManager.getInstance().getTotalStakedTokens();
         cachedUncap = Web3ApiManager.getInstance().getUncappedDelegatedStake();
 
-        getEventsData(true);
+        // for Home fragment
         RestApiManager.getInstance().getNetworkStatus();
 
+        // for Events fragment
+        getEventsData(true);
+
+        // for Calc fragment
+        cachedGasFee = Web3ApiManager.getInstance().getGasPrice();
+        RestApiManager.getInstance().getCoinPriceUSD();
+
         lastCachedTimestamp = (new Timestamp(System.currentTimeMillis())).getTime(); // msec
+
+        // temp code: send noti
+        getTotalStake(false);
+        getGasFee(false);
     }
 
     private boolean needNetworkRefresh() {
@@ -67,14 +85,22 @@ public class InfoProvider {
         return (timeDiff > 60*60*1000); // 1 Hour diff
     }
 
-    public long getTotalStake() {
-        if (needNetworkRefresh()) {
+    // get methods
+    public void getTotalStake(boolean isForce) {
+        if (needNetworkRefresh() || isForce) {
             loadAllInfo();
+        } else {
+            if (homeCallback != null && cachedTotalStake.compareTo(BigInteger.ZERO) > 0) {
+                Message msg = new Message();
+                msg.what = HomeFragment.GET_TOTAL_STAKE;
+                msg.arg1 = cachedNumOfGuardians;
+                msg.obj = Util.convertToBigDecimal(cachedTotalStake.subtract(cachedUncap)).longValue();
+                homeCallback.sendMessage(msg);
+            }
         }
-        return Util.convertToBigDecimal(cachedTotalStake.subtract(cachedUncap)).longValue();
     }
 
-    // this must be the last one
+    // this must be the last one for home fragment
     public void getNetworkStatus(boolean isForce) {
         if (needNetworkRefresh() || isForce) {
             loadAllInfo();
@@ -89,9 +115,67 @@ public class InfoProvider {
         }
     }
 
+    public void getGasFee(boolean isForce) {
+        if (needNetworkRefresh() || isForce) {
+            loadAllInfo();
+        } else {
+            if (calculatorCallback != null && cachedGasFee > 0) {
+                Message msg = new Message();
+                msg.what = CalculationFragment.GET_GAS_FEE;
+                msg.arg1 = cachedGasFee;
+                calculatorCallback.sendMessage(msg);
+            }
+        }
+    }
+
+    public void getEventsData(boolean isForce) {
+        Log.d(LOG_TAG, "getEventRawDataFromNetwork");
+
+        if (needNetworkRefresh() || isForce) {
+            // TODO: get Block number of prior 30 days
+            long latestBlock = Web3ApiManager.getInstance().getLatestBlock().getNumber().longValue();
+            long from = latestBlock - 220000; // 220K blocks == about 33 days
+            RestApiManager.getInstance().getAllStakingEvents(from);
+        } else {
+            if (eventsCallback != null && cachedAllEvents != null) {
+                Message msg = new Message();
+                msg.what = EventsFragment.GET_EVENTS;
+                msg.obj = cachedAllEvents;
+                eventsCallback.sendMessage(msg);
+            }
+        }
+    }
+
+    public void getTokenPrice(boolean isForce) {
+        Log.d(LOG_TAG, "getTokenPrice");
+
+        if (needNetworkRefresh() || isForce) {
+            // TODO: get Block number of prior 30 days
+            loadAllInfo();
+        } else {
+            if (calculatorCallback != null) {
+                Message msg = new Message();
+                msg.what = CalculationFragment.GET_ETH_USD_PRICE;
+                msg.obj = (Double) cachedETHprice;
+                calculatorCallback.sendMessage(msg);
+
+                Message msg2 = new Message();
+                msg2.what = CalculationFragment.GET_ORBS_USD_PRICE;
+                msg2.obj = (Double) cachedORBSprice;
+                calculatorCallback.sendMessage(msg2);
+            }
+        }
+    }
+
+    // update methods (update cached data and noti to UI if needed)
     public void updateNetworkStatus(int numOfGuardian, long totalCommitteeStake) {
         cachedNumOfGuardians = numOfGuardian;
         cachedTotalCommitteeStake = totalCommitteeStake;
+
+        double maxCapAnnualReward = 80000000;
+        double maxCapRate = 0.12;
+        double percentage = Math.min((maxCapAnnualReward / cachedTotalCommitteeStake), maxCapRate);
+        cachedRewardsRate = percentage * 0.6667; // default delegator's rate is hard-coded here
 
         if (homeCallback != null) {
             Message msg = new Message();
@@ -100,6 +184,30 @@ public class InfoProvider {
             msg.obj = cachedTotalCommitteeStake;
             homeCallback.sendMessage(msg);
         }
+    }
+
+    public void updateTokenPrice(double eth, double orbs) {
+        cachedETHprice = eth;
+        cachedORBSprice = orbs;
+
+        if (calculatorCallback != null) {
+            Message msg = new Message();
+            msg.what = CalculationFragment.GET_ETH_USD_PRICE;
+            msg.obj = (Double) cachedETHprice;
+            calculatorCallback.sendMessage(msg);
+
+//            msg.what = CalculationFragment.GET_ORBS_USD_PRICE;
+//            msg.obj = (Double) cachedORBSprice;
+//            calculatorCallback.sendMessage(msg);
+        }
+    }
+
+    public void updateRewardsRate(double rate) {
+        cachedRewardsRate = rate;
+    }
+
+    public double getRewardsRate() {
+        return cachedRewardsRate;
     }
 
     public void updateAllStakeEvents(String jsonResponse) {
@@ -128,24 +236,6 @@ public class InfoProvider {
         }
     }
 
-    public void getEventsData(boolean isForce) {
-        Log.d(LOG_TAG, "getEventRawDataFromNetwork");
-
-        if (needNetworkRefresh() || isForce) {
-            // TODO: get Block number of prior 30 days
-            long latestBlock = Web3ApiManager.getInstance().getLatestBlock().getNumber().longValue();
-            long from = latestBlock - 220000; // 220K blocks == about 33 days
-            RestApiManager.getInstance().getAllStakingEvents(from);
-        } else {
-            if (eventsCallback != null && cachedAllEvents != null) {
-                Message msg = new Message();
-                msg.what = EventsFragment.GET_EVENTS;
-                msg.obj = cachedAllEvents;
-                eventsCallback.sendMessage(msg);
-            }
-        }
-    }
-
     public JSONArray getCachedEventsData() {
         return cachedAllEvents;
     }
@@ -158,6 +248,9 @@ public class InfoProvider {
         eventsCallback = callback;
     }
 
+    public void registerCalcCallback(Handler callback) {
+        calculatorCallback = callback;
+    }
 
     class MyJSONComparator implements Comparator<JSONObject> {
         @Override

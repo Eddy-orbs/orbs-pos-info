@@ -436,20 +436,32 @@ public class Web3ApiManager {
     }
 
     // get current average gas price from the ETH network
-    public void getGasPrice() {
+    public int getGasPrice() {
         CompletableFuture<EthGasPrice> ethGetBalanceCompletableFuture;
-        ethGetBalanceCompletableFuture = web3jNode.ethGasPrice().sendAsync();
-        ethGetBalanceCompletableFuture.thenApply(ethGasPrice -> {
-            // Balance will be set once the data is fetched
-            BigDecimal priceInWei = new BigDecimal(ethGasPrice.getGasPrice());
-            BigDecimal priceInGwei = priceInWei.divide(new BigDecimal(BigInteger.TEN.pow(9)));
-            this.gasPriceGwei = priceInGwei.toBigInteger();
-            String fetchedPrice= priceInWei.toString();
-            Log.i(LOG_TAG, "Fetched price: " + fetchedPrice);
-//            getGasPriceByUserSetting();
-//            DataManager.getInstance(mContext).onGetGasPrice((Integer.valueOf(gasPriceGwei.toString())));
-            return ethGasPrice;       //dummy return
-        });
+//        ethGetBalanceCompletableFuture
+        try {
+            EthGasPrice ethGasPrice = web3jNode.ethGasPrice().sendAsync().get();
+            BigInteger priceInWei = ethGasPrice.getGasPrice();
+            BigInteger priceInGwei = priceInWei.divide(BigInteger.TEN.pow(9));
+
+            Log.i(LOG_TAG, "Fetched price: " + priceInGwei);
+            return priceInGwei.intValue();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+//        ethGetBalanceCompletableFuture.thenApply(ethGasPrice -> {
+//            // Balance will be set once the data is fetched
+//            BigDecimal priceInWei = new BigDecimal(ethGasPrice.getGasPrice());
+//            BigDecimal priceInGwei = priceInWei.divide(new BigDecimal(BigInteger.TEN.pow(9)));
+//            this.gasPriceGwei = priceInGwei.toBigInteger();
+//            String fetchedPrice= priceInWei.toString();
+//            Log.i(LOG_TAG, "Fetched price: " + fetchedPrice);
+////            getGasPriceByUserSetting();
+////            DataManager.getInstance(mContext).onGetGasPrice((Integer.valueOf(gasPriceGwei.toString())));
+//            return ethGasPrice;       //dummy return
+//        });
     }
 
     private BigInteger getTransactionGasLimit(Transaction transaction) {

@@ -29,6 +29,7 @@ public class HomeFragment extends Fragment {
     private static final String LOG_TAG = "HomeFragment";
 
     public static final int GET_NETWORK_STATUS = 1000;
+    public static final int GET_TOTAL_STAKE = 1001;
 
     private View root;
     private long totalStake = 0;
@@ -56,11 +57,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void loadInfo(boolean isForce) {
-
         // load and update total stake
-        totalStake = InfoProvider.getInstance().getTotalStake();
-        TextView tvTotalStake = root.findViewById(R.id.text_total_stake);
-        tvTotalStake.setText(String.format("%,d", totalStake));
+        InfoProvider.getInstance().getTotalStake(isForce);
 
         // load and update # of guardians
         InfoProvider.getInstance().getNetworkStatus(isForce);
@@ -73,18 +71,14 @@ public class HomeFragment extends Fragment {
         public boolean handleMessage(Message msg) {
             switch (msg.what) {
                 case GET_NETWORK_STATUS:
-
                     // num of guardians
                     numberOfGuardians = msg.arg1;
                     TextView tvNumOfGuardians = root.findViewById(R.id.text_active_guardian_number);
                     tvNumOfGuardians.setText(String.format("%,d", numberOfGuardians));
 
                     // rewards rate
-                    long totalCommitteeStake = (Long) msg.obj;
-                    double maxCapAnnualReward = 80000000;
-                    double maxCapRate = 0.12;
-                    double percentage = Math.min((maxCapAnnualReward / totalCommitteeStake), maxCapRate);
-                    percentage *= 0.6667; // default delegator's rate is hard-coded here
+                    double percentage = InfoProvider.getInstance().getRewardsRate();
+
                     TextView tvRewardRate = root.findViewById(R.id.text_reward_rate);
                     String rateStr = (new DecimalFormat("#.##%").format(percentage));
                     tvRewardRate.setText(rateStr);
@@ -94,6 +88,14 @@ public class HomeFragment extends Fragment {
                     if (mSwipeRefreshLayout != null) {
                         mSwipeRefreshLayout.setRefreshing(false);
                     }
+                    break;
+
+                case GET_TOTAL_STAKE:
+                    totalStake = (Long) msg.obj;
+                    Log.d(LOG_TAG, "handleMessage2:" + totalStake);
+                    TextView tvTotalStake = root.findViewById(R.id.text_total_stake);
+                    tvTotalStake.setText(String.format("%,d", totalStake));
+
                     break;
                 default:
                     break;
