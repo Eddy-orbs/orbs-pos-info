@@ -10,284 +10,282 @@
         android:id="@+id/swipe_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    <ScrollView
-        android:id="@+id/scrollview_home"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:scrollbarThumbVertical="@android:color/white"
-        android:scrollbarFadeDuration="1000"
         app:layout_constraintBottom_toTopOf="@id/button_to_analytics"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
-        <LinearLayout
-            android:id="@+id/layout_home"
+        <ScrollView
+            android:id="@+id/scrollview_home"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="top"
-            android:orientation="vertical"
-            android:paddingHorizontal="@dimen/basic_padding_horizontal"
-            android:paddingVertical="@dimen/basic_padding_horizontal">
+            android:layout_height="0dp"
+            android:scrollbarFadeDuration="1000"
+            android:scrollbarThumbVertical="@android:color/white">
 
             <LinearLayout
-                android:id="@+id/total_layout"
+                android:id="@+id/layout_home"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:background="@drawable/bg_round_rect"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:gravity="top"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/basic_padding_horizontal"
+                android:paddingVertical="@dimen/basic_padding_horizontal">
 
                 <LinearLayout
+                    android:id="@+id/total_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:background="@color/bg_round_rect"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingHorizontal="@dimen/button_round">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_marginBottom="5dp"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/textTotalStake"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:fontFamily="@font/montserrat"
-                            android:gravity="center_vertical"
-                            android:minHeight="@dimen/reward_text_height"
-                            android:text="TOTAL STAKE"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/basic_text_size"
-                            android:theme="@style/TextBasic" />
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/guardianTable_line"
-                        android:background="@color/taleLine2" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:background="@drawable/bg_round_rect"
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:background="@color/bg_round_rect"
                         android:gravity="center"
-                        android:orientation="horizontal">
+                        android:orientation="vertical"
+                        android:paddingHorizontal="@dimen/button_round">
 
-                        <TextView
-                            android:id="@+id/text_total_stake"
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/reward_balance_height"
-                            android:gravity="bottom|center_vertical"
-                            android:includeFontPadding="false"
-                            android:lineSpacingExtra="0dp"
-                            android:singleLine="false"
-                            android:text="-"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/wallet_amount_tokens"
-                            android:theme="@style/TextBasic" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_marginBottom="5dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
 
-                        <ImageView
-                            android:id="@+id/imageView100"
-                            android:layout_width="20dp"
-                            android:layout_height="16dp"
-                            android:layout_gravity="center"
-                            android:layout_marginStart="5dp"
+                            <TextView
+                                android:id="@+id/textTotalStake"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:fontFamily="@font/montserrat"
+                                android:gravity="center_vertical"
+                                android:minHeight="@dimen/reward_text_height"
+                                android:text="@string/home_total_stake"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/basic_text_size"
+                                android:theme="@style/TextBasic" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/guardianTable_line"
+                            android:background="@color/taleLine2" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/text_total_stake"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/reward_balance_height"
+                                android:gravity="bottom|center_vertical"
+                                android:includeFontPadding="false"
+                                android:lineSpacingExtra="0dp"
+                                android:singleLine="false"
+                                android:text="-"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/wallet_amount_tokens"
+                                android:theme="@style/TextBasic" />
+
+                            <ImageView
+                                android:id="@+id/imageView100"
+                                android:layout_width="20dp"
+                                android:layout_height="16dp"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="10dp"
+                                android:tint="@color/textColor"
+                                app:srcCompat="@drawable/ic_orbs_2" />
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/button_stake"
+                            style="@style/ButtonTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
                             android:layout_marginTop="10dp"
-                            android:tint="@color/textColor"
-                            app:srcCompat="@drawable/ic_orbs_2" />
+                            android:background="@drawable/button_custom"
+                            android:defaultFocusHighlightEnabled="false"
+                            android:hapticFeedbackEnabled="true"
+                            android:text="@string/home_stake_your_token"
+                            android:textAllCaps="false" />
+
+
                     </LinearLayout>
-
-                    <Button
-                        android:id="@+id/button_stake"
-                        style="@style/ButtonTheme"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/button_custom"
-                        android:defaultFocusHighlightEnabled="false"
-                        android:hapticFeedbackEnabled="true"
-                        android:text="Stake your Token"
-                        android:textAllCaps="false" />
-
 
                 </LinearLayout>
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/activeGuardian_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/basic_padding_horizontal"
-                android:background="@drawable/bg_round_rect"
-                android:orientation="vertical">
-
                 <LinearLayout
+                    android:id="@+id/activeGuardian_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:background="@color/bg_round_rect"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingHorizontal="@dimen/button_round">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_marginBottom="5dp"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/textActiveGuardianTitle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:fontFamily="@font/montserrat"
-                            android:gravity="center_vertical"
-                            android:minHeight="@dimen/reward_text_height"
-                            android:text="Number of Active Guardians"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/basic_text_size"
-                            android:theme="@style/TextBasic" />
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/guardianTable_line"
-                        android:background="@color/taleLine2" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/basic_padding_horizontal"
+                    android:background="@drawable/bg_round_rect"
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:background="@color/bg_round_rect"
                         android:gravity="center"
-                        android:orientation="horizontal">
+                        android:orientation="vertical"
+                        android:paddingHorizontal="@dimen/button_round">
 
-                        <TextView
-                            android:id="@+id/text_active_guardian_number"
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/reward_balance_height"
-                            android:gravity="bottom|center_vertical"
-                            android:includeFontPadding="false"
-                            android:lineSpacingExtra="0dp"
-                            android:singleLine="false"
-                            android:text="-"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/wallet_amount_tokens"
-                            android:theme="@style/TextBasic" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_marginBottom="5dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textActiveGuardianTitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:fontFamily="@font/montserrat"
+                                android:gravity="center_vertical"
+                                android:minHeight="@dimen/reward_text_height"
+                                android:text="@string/home_number_of_active_guardians"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/basic_text_size"
+                                android:theme="@style/TextBasic" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/guardianTable_line"
+                            android:background="@color/taleLine2" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/text_active_guardian_number"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/reward_balance_height"
+                                android:gravity="bottom|center_vertical"
+                                android:includeFontPadding="false"
+                                android:lineSpacingExtra="0dp"
+                                android:singleLine="false"
+                                android:text="-"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/wallet_amount_tokens"
+                                android:theme="@style/TextBasic" />
+
+
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/button_guardians_list"
+                            style="@style/ButtonTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/button_custom"
+                            android:defaultFocusHighlightEnabled="false"
+                            android:hapticFeedbackEnabled="true"
+                            android:text="@string/home_network_status"
+                            android:textAllCaps="false" />
 
 
                     </LinearLayout>
-
-                    <Button
-                        android:id="@+id/button_guardians_list"
-                        style="@style/ButtonTheme"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/button_custom"
-                        android:defaultFocusHighlightEnabled="false"
-                        android:hapticFeedbackEnabled="true"
-                        android:text="Network status"
-                        android:textAllCaps="false" />
-
 
                 </LinearLayout>
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/rewardRate_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/basic_padding_horizontal"
-                android:background="@drawable/bg_round_rect"
-                android:orientation="vertical">
-
                 <LinearLayout
+                    android:id="@+id/rewardRate_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:background="@color/bg_round_rect"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingHorizontal="@dimen/button_round">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_marginBottom="5dp"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/textRewardRateTitle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:fontFamily="@font/montserrat"
-                            android:gravity="center_vertical"
-                            android:minHeight="@dimen/reward_text_height"
-                            android:text="Today's Rewards Rate (APR)"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/basic_text_size"
-                            android:theme="@style/TextBasic" />
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/guardianTable_line"
-                        android:background="@color/taleLine2" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/basic_padding_horizontal"
+                    android:background="@drawable/bg_round_rect"
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:background="@color/bg_round_rect"
                         android:gravity="center"
-                        android:orientation="horizontal">
+                        android:orientation="vertical"
+                        android:paddingHorizontal="@dimen/button_round">
 
-                        <TextView
-                            android:id="@+id/text_reward_rate"
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/reward_balance_height"
-                            android:gravity="bottom|center_vertical"
-                            android:includeFontPadding="false"
-                            android:lineSpacingExtra="0dp"
-                            android:singleLine="false"
-                            android:text="-.-- %"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/wallet_amount_tokens"
-                            android:theme="@style/TextBasic" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_marginBottom="5dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textRewardRateTitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:fontFamily="@font/montserrat"
+                                android:gravity="center_vertical"
+                                android:minHeight="@dimen/reward_text_height"
+                                android:text="@string/home_today_s_rewards_rate_apr"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/basic_text_size"
+                                android:theme="@style/TextBasic" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/guardianTable_line"
+                            android:background="@color/taleLine2" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/text_reward_rate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/reward_balance_height"
+                                android:gravity="bottom|center_vertical"
+                                android:includeFontPadding="false"
+                                android:lineSpacingExtra="0dp"
+                                android:singleLine="false"
+                                android:text="-.-- %"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/wallet_amount_tokens"
+                                android:theme="@style/TextBasic" />
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/button_goto_calculation"
+                            style="@style/ButtonTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/button_custom"
+                            android:defaultFocusHighlightEnabled="false"
+                            android:hapticFeedbackEnabled="true"
+                            android:text="@string/home_rewards_calculator"
+                            android:textAllCaps="false" />
                     </LinearLayout>
 
-                    <Button
-                        android:id="@+id/button_goto_calculation"
-                        style="@style/ButtonTheme"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/button_custom"
-                        android:defaultFocusHighlightEnabled="false"
-                        android:hapticFeedbackEnabled="true"
-                        android:text="Rewards Calculator"
-                        android:textAllCaps="false" />
                 </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
-
-    </ScrollView>
+        </ScrollView>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
@@ -295,7 +293,7 @@
         android:id="@+id/button_to_analytics"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/scrollview_home"
+        app:layout_constraintTop_toBottomOf="@id/swipe_layout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -303,6 +301,6 @@
         android:background="@color/button"
         android:padding="10dp"
         android:textAllCaps="false"
-        android:text="To see more info about Orbs PoS Universe, please visit POS UNIVERSE ANALYTICS (CLICK Here)"
+        android:text="@string/home_bottom_msg"
         app:layout_constraintVertical_bias="1"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

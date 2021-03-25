@@ -51,13 +51,13 @@ public class EventsListActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         String title = "";
         if (currentType == ACTION_STAKE) {
-            title += "STAKED";
+            title += getString(R.string.list_title_staked);
         } else if (currentType == ACTION_UNSTAKE) {
-            title += "UNSTAKED";
+            title += getString(R.string.list_title_unstaked);
         } else {
-            title += "WITHDREW";
+            title += getString(R.string.list_title_withdrew);
         }
-        title += " Events list";
+        title += getString(R.string.list_title_footer);
         getSupportActionBar().setTitle(title);
 
         // TODO: change font and color in Actionbar
@@ -69,7 +69,7 @@ public class EventsListActivity extends AppCompatActivity {
 
         TextView countText = findViewById(R.id.text_count);
         int defaultDays = SharedPreferenceManager.getDefaultPeriod(this);
-        String countTextStr = String.format("There are %d events during last %d days", jsonDataList.size(), defaultDays);
+        String countTextStr = String.format(getString(R.string.list_top_header), jsonDataList.size(), defaultDays);
         countText.setText(countTextStr);
 
         ListView eventsListView = findViewById(R.id.event_listview);

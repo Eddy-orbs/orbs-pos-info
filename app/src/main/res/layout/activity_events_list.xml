@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
             android:textSize="@dimen/list_text"
-            android:text="0"
+            android:text="@string/list_top_header"
             />
     </LinearLayout>
 

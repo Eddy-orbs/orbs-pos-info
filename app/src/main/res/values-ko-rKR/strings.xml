@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ORBS PoS Info</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="title_p1_pos">PoS 정보</string>
+    <string name="title_p2_events">PoS 기록</string>
+    <string name="title_p3_gas">PoS 계산기</string>
+
+    <string name="loading_app_update_failed">앱을 업데이트하고 다시 실행해주세요</string>
+
+    <string name="home_total_stake">전체 스테이킹 수량</string>
+    <string name="home_stake_your_token">스테이킹 하러가기</string>
+    <string name="home_number_of_active_guardians">등록된 가디언 수</string>
+    <string name="home_network_status">네트워크 상태 확인</string>
+    <string name="home_today_s_rewards_rate_apr">오늘 기준 리워드 비율 (연보상률)</string>
+    <string name="home_rewards_calculator">리워드 계산기</string>
+    <string name="home_bottom_msg">\"유니버스 분석도구\"에서 오브스 유니버스에 대한 더 많은 정보를 보실 수 있습니다 (여기를 클릭)</string>
+    <string name="events_top_msg">POS 유니버스에서 발생한 최근 이벤트들(락업, 언락, 회수)을 이곳에서 확인해보세요.</string>
+    <string name="events_days_3">3 일</string>
+    <string name="events_days_7">7 일</string>
+    <string name="events_days_30">30 일</string>
+    <string name="events_title_staked">해당 기간동안의 스테이킹 수량</string>
+    <string name="events_title_unstaked">해당 기간동안의 언락 수량</string>
+    <string name="events_title_withdrew">해당 기간동안의 회수한 수량</string>
+    <string name="events_btn_stake">스테이킹 목록 확인</string>
+    <string name="events_btn_unstake">언락 목록 확인</string>
+    <string name="events_btn_withdrew">회수 목록 확인</string>
+    <string name="calc_top_msg">알림: 여기서의 계산 결과는 실제 참여시의 보상과 차이가 있을 수 있습니다. 화면을 아래로 당기면 최신 정보를 새로고침합니다.</string>
+    <string name="calc_input_amounts">스테이킹 예상 수량 입력</string>
+    <string name="calc_week">매주 받게되는 보상 수량</string>
+    <string name="calc_year">1년동안 받게되는 예상 보상 토큰 수</string>
+    <string name="calc_gas_title">"현재 평균 가스비 : "</string>
+    <string name="calc_new_delegation">처음 위임하고 스테이킹 할 때</string>
+    <string name="calc_new_increase">추가 수량 스테이킹 할 때</string>
+    <string name="calc_new_unstake">언락 할 때</string>
+    <string name="calc_claim1">첫 보상 정산할 때</string>
+    <string name="calc_claim2">첫 정산 이후 추가 정산할 때</string>
+    <string name="list_top_header">%d개의 이벤트가 지난 %d일 동안 있었습니다</string>
+    <string name="list_time">시간(#블록)</string>
+    <string name="list_action">종류</string>
+    <string name="list_address">주소</string>
+    <string name="list_amount">수량</string>
+    <string name="list_txid">TxID</string>
+    <string name="list_title_staked">스테이킹</string>
+    <string name="list_title_unstaked">언락</string>
+    <string name="list_title_withdrew">회수하기</string>
+    <string name="list_title_footer">" 리스트"</string>
+
+</resources>

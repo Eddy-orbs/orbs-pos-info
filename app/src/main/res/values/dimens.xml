@@ -26,7 +26,7 @@
     <dimen name="alert_message_size">16dp</dimen>
     <dimen name="text_copy_address">10dp</dimen>
     <dimen name="wallet_amount_tokens">40dp</dimen>
-    <dimen name="text_my_guardian">15dp</dimen>
+    <dimen name="text_size_fiat">15dp</dimen>
     <dimen name="input_send_amount">30dp</dimen>
     <dimen name="activity_title_size">16dp</dimen>
     <dimen name="text_description">12dp</dimen>

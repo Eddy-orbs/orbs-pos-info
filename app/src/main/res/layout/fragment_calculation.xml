@@ -7,17 +7,790 @@
     tools:context=".ui.calculation.CalculationFragment">
 
     <TextView
-        android:id="@+id/text_notifications"
+        android:id="@+id/text_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/swipe_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        style="@style/TextBasic"
+        android:gravity="center"
+        android:background="@color/button"
+        android:padding="10dp"
+        android:textAllCaps="false"
+        android:text="@string/calc_top_msg"
+        app:layout_constraintVertical_bias="1"/>
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/text_description">
+
+    <ScrollView
+        android:id="@+id/scrollview_home"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scrollbarThumbVertical="@android:color/white"
+        android:scrollbarFadeDuration="1000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_description">
+
+        <LinearLayout
+            android:id="@+id/layout_calc"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="top"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/basic_padding_horizontal"
+            android:paddingVertical="@dimen/basic_padding_horizontal">
+
+            <LinearLayout
+                android:id="@+id/calc_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:background="@drawable/bg_round_rect_transp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/button_round">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textCalculatorTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="@font/montserrat"
+                            android:gravity="center_vertical"
+                            android:minHeight="@dimen/reward_text_height"
+                            android:text="@string/calc_input_amounts"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/basic_text_size"
+                            android:theme="@style/TextBasic" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/edit_amount"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="@dimen/input_send_amount"
+                            android:textColor="@color/textColor"
+                            android:backgroundTint="@color/textColor"
+                            android:gravity="center"
+                            android:hint="123456"
+                            android:inputType="number"
+                            android:lines="2"
+                            android:maxLength="24"
+                            android:fontFamily="@font/montserrat_light"
+                            android:textColorHint="#999999" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="16dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="10dp"
+                            android:tint="@color/textColor"
+                            app:srcCompat="@drawable/ic_orbs_2" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/button_calculate"
+                        style="@style/ButtonTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/button_custom"
+                        android:defaultFocusHighlightEnabled="false"
+                        android:hapticFeedbackEnabled="true"
+                        android:text="Calculate"
+                        android:visibility="gone"
+                        android:textAllCaps="false" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/week_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_round_rect"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@color/bg_round_rect"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/button_round">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textWeeklyRewardTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="@font/montserrat"
+                            android:gravity="center_vertical"
+                            android:minHeight="@dimen/reward_text_height"
+                            android:text="@string/calc_week"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/basic_text_size"
+                            android:theme="@style/TextBasic" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/guardianTable_line"
+                        android:background="@color/taleLine2" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_rate_week"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/reward_balance_height"
+                            android:gravity="bottom|center_vertical"
+                            android:includeFontPadding="false"
+                            android:lineSpacingExtra="0dp"
+                            android:singleLine="false"
+                            android:text="-"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/wallet_amount_tokens"
+                            android:theme="@style/TextBasic" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="16dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="10dp"
+                            android:tint="@color/textColor"
+                            app:srcCompat="@drawable/ic_orbs_2" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/text_rate_week_usd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="bottom|center_vertical"
+                        android:includeFontPadding="false"
+                        android:lineSpacingExtra="0dp"
+                        android:singleLine="false"
+                        android:text="(- USD)"
+                        android:paddingBottom="5dp"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/text_size_fiat"
+                        android:theme="@style/TextBasic" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/year_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/basic_padding_horizontal"
+                android:background="@drawable/bg_round_rect"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@color/bg_round_rect"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/button_round">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textYearlyRewardTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="@font/montserrat"
+                            android:gravity="center_vertical"
+                            android:minHeight="@dimen/reward_text_height"
+                            android:text="@string/calc_year"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/basic_text_size"
+                            android:theme="@style/TextBasic" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/guardianTable_line"
+                        android:background="@color/taleLine2" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_rate_year"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/reward_balance_height"
+                            android:gravity="bottom|center_vertical"
+                            android:includeFontPadding="false"
+                            android:lineSpacingExtra="0dp"
+                            android:singleLine="false"
+                            android:text="-"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/wallet_amount_tokens"
+                            android:theme="@style/TextBasic" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="16dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="10dp"
+                            android:tint="@color/textColor"
+                            app:srcCompat="@drawable/ic_orbs_2" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/text_rate_year_usd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="bottom|center_vertical"
+                        android:includeFontPadding="false"
+                        android:lineSpacingExtra="0dp"
+                        android:singleLine="false"
+                        android:text="(- USD)"
+                        android:paddingBottom="5dp"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/text_size_fiat"
+                        android:theme="@style/TextBasic" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:minHeight="@dimen/button_height"
+                android:fontFamily="@font/montserrat"
+                android:background="#1F4E79"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/basic_padding_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/button_height"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="center"
+                    android:textColor="@color/buttonText"
+                    android:textSize="@dimen/text_description"
+                    android:text="@string/calc_gas_title" />
+                <TextView
+                    android:id="@+id/text_gwei"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/button_height"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="center"
+                    android:textColor="@color/buttonText"
+                    android:textSize="@dimen/text_description"
+                    android:text="- Gwei"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/basic_padding_horizontal"
+                android:background="@drawable/bg_round_rect"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@color/bg_round_rect"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/button_round">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="@font/montserrat"
+                            android:gravity="center_vertical"
+                            android:minHeight="@dimen/reward_text_height"
+                            android:text="@string/calc_new_delegation"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/basic_text_size"
+                            android:theme="@style/TextBasic" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/guardianTable_line"
+                        android:background="@color/taleLine2" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_gas_new"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/reward_balance_height"
+                            android:gravity="bottom|center_vertical"
+                            android:includeFontPadding="false"
+                            android:lineSpacingExtra="0dp"
+                            android:singleLine="false"
+                            android:text="-"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/wallet_amount_tokens"
+                            android:theme="@style/TextBasic" />
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="10dp"
+                            android:tint="@color/textColor"
+                            app:srcCompat="@drawable/ethereum" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/text_gas_new_usd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="bottom|center_vertical"
+                        android:includeFontPadding="false"
+                        android:lineSpacingExtra="0dp"
+                        android:singleLine="false"
+                        android:text="(- USD)"
+                        android:paddingBottom="5dp"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/text_size_fiat"
+                        android:theme="@style/TextBasic" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/basic_padding_horizontal"
+                android:background="@drawable/bg_round_rect"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@color/bg_round_rect"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/button_round">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="@font/montserrat"
+                            android:gravity="center_vertical"
+                            android:minHeight="@dimen/reward_text_height"
+                            android:text="@string/calc_new_increase"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/basic_text_size"
+                            android:theme="@style/TextBasic" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/guardianTable_line"
+                        android:background="@color/taleLine2" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_gas_increase"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/reward_balance_height"
+                            android:gravity="bottom|center_vertical"
+                            android:includeFontPadding="false"
+                            android:lineSpacingExtra="0dp"
+                            android:singleLine="false"
+                            android:text="-"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/wallet_amount_tokens"
+                            android:theme="@style/TextBasic" />
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="10dp"
+                            android:tint="@color/textColor"
+                            app:srcCompat="@drawable/ethereum" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/text_gas_increase_usd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="bottom|center_vertical"
+                        android:includeFontPadding="false"
+                        android:lineSpacingExtra="0dp"
+                        android:singleLine="false"
+                        android:text="(- USD)"
+                        android:paddingBottom="5dp"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/text_size_fiat"
+                        android:theme="@style/TextBasic" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/basic_padding_horizontal"
+                android:background="@drawable/bg_round_rect"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@color/bg_round_rect"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/button_round">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="@font/montserrat"
+                            android:gravity="center_vertical"
+                            android:minHeight="@dimen/reward_text_height"
+                            android:text="@string/calc_new_unstake"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/basic_text_size"
+                            android:theme="@style/TextBasic" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/guardianTable_line"
+                        android:background="@color/taleLine2" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_gas_unstake"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/reward_balance_height"
+                            android:gravity="bottom|center_vertical"
+                            android:includeFontPadding="false"
+                            android:lineSpacingExtra="0dp"
+                            android:singleLine="false"
+                            android:text="-"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/wallet_amount_tokens"
+                            android:theme="@style/TextBasic" />
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="10dp"
+                            android:tint="@color/textColor"
+                            app:srcCompat="@drawable/ethereum" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/text_gas_unstake_usd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="bottom|center_vertical"
+                        android:includeFontPadding="false"
+                        android:lineSpacingExtra="0dp"
+                        android:singleLine="false"
+                        android:text="(- USD)"
+                        android:paddingBottom="5dp"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/text_size_fiat"
+                        android:theme="@style/TextBasic" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/basic_padding_horizontal"
+                android:background="@drawable/bg_round_rect"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@color/bg_round_rect"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/button_round">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="@font/montserrat"
+                            android:gravity="center_vertical"
+                            android:minHeight="@dimen/reward_text_height"
+                            android:text="@string/calc_claim1"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/basic_text_size"
+                            android:theme="@style/TextBasic" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/guardianTable_line"
+                        android:background="@color/taleLine2" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_gas_claim1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/reward_balance_height"
+                            android:gravity="bottom|center_vertical"
+                            android:includeFontPadding="false"
+                            android:lineSpacingExtra="0dp"
+                            android:singleLine="false"
+                            android:text="-"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/wallet_amount_tokens"
+                            android:theme="@style/TextBasic" />
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="10dp"
+                            android:tint="@color/textColor"
+                            app:srcCompat="@drawable/ethereum" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/text_gas_claim1_usd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="bottom|center_vertical"
+                        android:includeFontPadding="false"
+                        android:lineSpacingExtra="0dp"
+                        android:singleLine="false"
+                        android:text="(- USD)"
+                        android:paddingBottom="5dp"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/text_size_fiat"
+                        android:theme="@style/TextBasic" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/basic_padding_horizontal"
+                android:background="@drawable/bg_round_rect"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@color/bg_round_rect"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/button_round">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="@font/montserrat"
+                            android:gravity="center_vertical"
+                            android:minHeight="@dimen/reward_text_height"
+                            android:text="@string/calc_claim2"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/basic_text_size"
+                            android:theme="@style/TextBasic" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/guardianTable_line"
+                        android:background="@color/taleLine2" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_gas_claim2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/reward_balance_height"
+                            android:gravity="bottom|center_vertical"
+                            android:includeFontPadding="false"
+                            android:lineSpacingExtra="0dp"
+                            android:singleLine="false"
+                            android:text="-"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/wallet_amount_tokens"
+                            android:theme="@style/TextBasic" />
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="10dp"
+                            android:tint="@color/textColor"
+                            app:srcCompat="@drawable/ethereum" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/text_gas_claim2_usd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="bottom|center_vertical"
+                        android:includeFontPadding="false"
+                        android:lineSpacingExtra="0dp"
+                        android:singleLine="false"
+                        android:text="(- USD)"
+                        android:paddingBottom="5dp"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/text_size_fiat"
+                        android:theme="@style/TextBasic" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

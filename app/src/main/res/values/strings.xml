@@ -9,5 +9,42 @@
     <string name="title_p3_gas">PoS Calc</string>
 
     <string name="loading_app_update_failed">Please update app and try again.</string>
+    <string name="home_total_stake">TOTAL STAKE</string>
+    <string name="home_stake_your_token">Stake your Token</string>
+    <string name="home_number_of_active_guardians">Number of Active Guardians</string>
+    <string name="home_network_status">Network status</string>
+    <string name="home_today_s_rewards_rate_apr">Today\'s Rewards Rate (APR)</string>
+    <string name="home_rewards_calculator">Rewards Calculator</string>
+    <string name="home_bottom_msg">To see more info about Orbs PoS Universe, please visit POS UNIVERSE ANALYTICS (CLICK Here)</string>
+    <string name="events_top_msg">You can track the latest events in the PoS Universe; ie. Stake, unstake, etc. Please select period.</string>
+    <string name="events_days_3">3 DAYS</string>
+    <string name="events_days_7">7 DAYS</string>
+    <string name="events_days_30">30 DAYS</string>
+    <string name="events_title_staked">STAKED during selected period</string>
+    <string name="events_title_unstaked">UNSTAKED during selected period</string>
+    <string name="events_title_withdrew">WITHDREW during selected period</string>
+    <string name="events_btn_stake">REVIEW LIST OF STAKE EVENTS</string>
+    <string name="events_btn_unstake">REVIEW LIST OF UNSTAKE EVENTS</string>
+    <string name="events_btn_withdrew">REVIEW LIST OF WITHDRAWN EVENTS</string>
+    <string name="calc_top_msg">NOTE: This calculation reflects current status and does not guarantee in real universe.\n* Pull down screen to refresh the latest info</string>
+    <string name="calc_input_amounts">Input Amounts to stake</string>
+    <string name="calc_week">Rewards rate every WEEK</string>
+    <string name="calc_year">Rewards rate every YEAR</string>
+    <string name="calc_gas_title">Current Average Gas fee :</string>
+    <string name="calc_new_delegation">New Delegation and stake</string>
+    <string name="calc_new_increase">Increase stake</string>
+    <string name="calc_new_unstake">Unstake</string>
+    <string name="calc_claim1">Claim (First time)</string>
+    <string name="calc_claim2">Claim (Second time)</string>
+    <string name="list_top_header">There are %d events during last %d days</string>
+    <string name="list_time">Time(#)</string>
+    <string name="list_action">Action</string>
+    <string name="list_address">Address</string>
+    <string name="list_amount">Amount</string>
+    <string name="list_txid">TxID</string>
+    <string name="list_title_staked">STAKED</string>
+    <string name="list_title_unstaked">UNSTAKED</string>
+    <string name="list_title_withdrew">WITHDREW </string>
+    <string name="list_title_footer">" Events list"</string>
 
 </resources>

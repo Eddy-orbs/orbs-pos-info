@@ -27,14 +27,26 @@
                 app:srcCompat="@android:drawable/ic_media_play" />
 
             <TextView
-                android:id="@+id/text_title_address"
+                android:id="@+id/text_title_1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginStart="5dp"
                 android:fontFamily="@font/montserrat"
                 android:gravity="top"
                 android:textColor="@color/buttonText"
-                android:text="0x123456789abcdef"
+                android:text="230,320 ORBS"
+                android:clickable="false"
+                android:layout_weight="1"
+                android:textSize="@dimen/list_text" />
+            <TextView
+                android:id="@+id/text_title_2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="5dp"
+                android:fontFamily="@font/montserrat"
+                android:gravity="end|center_vertical"
+                android:textColor="@color/buttonText"
+                android:text="2020-03-23"
                 android:clickable="false"
                 android:ellipsize="middle"
                 android:textSize="@dimen/list_text" />
@@ -50,7 +62,7 @@
             android:minHeight="@dimen/listTable_row_height"
             android:orientation="vertical"
             android:background="@drawable/bg_round_rect"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <TableLayout
                 android:id="@+id/guardian_table"
@@ -69,7 +81,7 @@
                         android:layout_marginStart="5dp"
                         android:fontFamily="@font/montserrat"
                         android:gravity="center_vertical"
-                        android:text="Time(#)"
+                        android:text="@string/list_time"
                         android:textColor="@color/textColor"
                         android:textSize="@dimen/table_col_title"
                         android:textStyle="bold" />
@@ -107,7 +119,7 @@
                         android:layout_marginStart="5dp"
                         android:fontFamily="@font/montserrat"
                         android:gravity="center_vertical"
-                        android:text="Action"
+                        android:text="@string/list_action"
                         android:textColor="@color/textColor"
                         android:textSize="@dimen/table_col_title"
                         android:textStyle="bold" />
@@ -145,7 +157,7 @@
                         android:layout_marginStart="5dp"
                         android:fontFamily="@font/montserrat"
                         android:gravity="center_vertical"
-                        android:text="Address"
+                        android:text="@string/list_address"
                         android:textColor="@color/textColor"
                         android:textSize="@dimen/table_col_title"
                         android:textStyle="bold" />
@@ -185,7 +197,7 @@
                         android:layout_marginStart="5dp"
                         android:fontFamily="@font/montserrat"
                         android:gravity="center_vertical"
-                        android:text="Amount"
+                        android:text="@string/list_amount"
                         android:textColor="@color/textColor"
                         android:textSize="@dimen/table_col_title"
                         android:textStyle="bold" />
@@ -223,7 +235,7 @@
                         android:layout_marginStart="5dp"
                         android:fontFamily="@font/montserrat"
                         android:gravity="center_vertical"
-                        android:text="TxID"
+                        android:text="@string/list_txid"
                         android:textColor="@color/textColor"
                         android:textSize="@dimen/table_col_title"
                         android:textStyle="bold" />
