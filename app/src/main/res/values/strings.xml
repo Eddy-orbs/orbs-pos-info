@@ -46,5 +46,6 @@
     <string name="list_title_unstaked">UNSTAKED</string>
     <string name="list_title_withdrew">WITHDREW </string>
     <string name="list_title_footer">" Events list"</string>
+    <string name="common_toast_confirm_back_key">Please press back key again to exit</string>
 
 </resources>

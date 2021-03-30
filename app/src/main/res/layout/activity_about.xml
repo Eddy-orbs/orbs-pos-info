@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/design_default_color_background">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbarFadeDuration="1000"
+        android:scrollbarThumbVertical="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/app_logo_about"
+                android:layout_width="327dp"
+                android:layout_height="240dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="4dp"
+                app:srcCompat="@drawable/about_logo" />
+
+            <LinearLayout
+                android:id="@+id/layout_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@id/layout_contact"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/app_logo_about">
+
+                <TextView
+                    android:id="@+id/text_version_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/basic_text_size"
+                    android:text="Version" />
+
+                <TextView
+                    android:id="@+id/text_version"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="0.0.1"
+                    android:textSize="@dimen/about_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_contact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@id/layout_buttons"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_version">
+
+                <TextView
+                    android:id="@+id/text_website_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/basic_text_size"
+                    android:text="Contact" />
+
+                <TextView
+                    android:id="@+id/text_website"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:autoLink="email"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="eddy@orbs.com"
+                    android:textColorLink="@color/textColor"
+                    android:textSize="@dimen/about_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_website_title" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/layout_buttons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="35dp"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/button_license"
+                    android:layout_width="228dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/button_custom"
+                    android:text="Open source license"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/basic_text_size"
+                    android:theme="@style/ButtonTheme" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!--  Open source license  -->
+    <LinearLayout
+        android:id="@+id/layout_license"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:background="#DAFFFFFF"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scrollbars="vertical"
+            android:scrollbarThumbVertical="@android:color/white"
+            android:scrollbarFadeDuration="1000"
+            android:fastScrollEnabled="true">
+
+            <LinearLayout
+                android:scrollbarFadeDuration="1000"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:isScrollContainer="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/basic_text_size"
+                    android:text="@string/open_source_license" />
+            </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/button_close_license"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_custom"
+            android:textColor="#000000"
+            android:theme="@style/ButtonTheme"
+            android:text="CLOSE" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

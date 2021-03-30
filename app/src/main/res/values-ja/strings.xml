@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ORBS PoS Info</string>
+    <string name="common_toast_confirm_back_key">再度戻るボタンを押してください</string>
+</resources>
