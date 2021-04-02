@@ -58,4 +58,10 @@ public class AboutActivity extends AppCompatActivity {
         String title = "About";
         getSupportActionBar().setTitle(title);
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 }
