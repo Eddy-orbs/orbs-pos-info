@@ -9,7 +9,7 @@
     <string name="calc_new_delegation">新規委任・ステーキング</string>
     <string name="calc_new_increase">追加ステーキング</string>
     <string name="calc_new_unstake">ステーキングを解除</string>
-    <string name="calc_top_msg">通知：ここでの計算結果は、実際の報酬と異なる場合があります。\n* 画面をリロードして情報を更新してください</string>
+    <string name="calc_top_msg">通知：ここでの計算結果は、実際の報酬と異なる場合があります。* 画面をリロードして情報を更新してください</string>
     <string name="calc_week">リワードレート/週</string>
     <string name="calc_year">リワードレート/年</string>
     <string name="events_btn_stake">ステーキング履歴を確認する</string>
@@ -22,7 +22,7 @@
     <string name="events_title_unstaked">選択期間中のステーキング解除数量</string>
     <string name="events_title_withdrew">選択期間中の出金数量</string>
     <string name="events_top_msg">PoSユニバースの履歴（ステーキングや解除等）が確認できます。期間を指定してください</string>
-    <string name="home_bottom_msg">\\\"ユニバース分析ツール\\\"でOrbs PoSユニバースの詳細情報を見る（こちらをクリック）</string>
+    <string name="home_bottom_msg">\"ユニバース分析ツール\"でOrbs PoSユニバースの詳細情報を見る（こちらをクリック）</string>
     <string name="home_network_status">ネットワークの状態を確認</string>
     <string name="home_number_of_active_guardians">登録されたガーディアン数</string>
     <string name="home_rewards_calculator">リワード電卓</string>
@@ -33,7 +33,7 @@
     <string name="list_address">アドレス</string>
     <string name="list_amount">数量</string>
     <string name="list_time">時間（＃ブロック）</string>
-    <string name="list_title_footer">\"リスト\"</string>
+    <string name="list_title_footer">リスト</string>
     <string name="list_title_staked">ステーキング済み</string>
     <string name="list_title_unstaked">ステーキングを解除</string>
     <string name="list_title_withdrew">出金する</string>

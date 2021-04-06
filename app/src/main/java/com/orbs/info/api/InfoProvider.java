@@ -128,6 +128,7 @@ public class InfoProvider {
         }
     }
 
+    private boolean[] eventUpdatedFlag = {false, false, false};
     public void getEventsData(boolean isForce) {
         Log.d(LOG_TAG, "getEventRawDataFromNetwork");
 
@@ -135,6 +136,8 @@ public class InfoProvider {
             // TODO: get Block number of prior 30 days
             long latestBlock = Web3ApiManager.getInstance().getLatestBlock().getNumber().longValue();
             long from = latestBlock - 220000; // 220K blocks == about 33 days
+            eventUpdatedFlag[0] = eventUpdatedFlag[1] = eventUpdatedFlag[2] = false;
+            cachedAllEvents = new JSONArray();
             RestApiManager.getInstance().getAllStakingEvents(from);
         } else {
             if (eventsCallback != null && cachedAllEvents != null) {
@@ -210,20 +213,36 @@ public class InfoProvider {
         return cachedRewardsRate;
     }
 
-    public void updateAllStakeEvents(String jsonResponse) {
+    public void updateStakeEventsByTopic(String jsonResponse, int topicIndex) {
         try {
-            cachedAllEvents = (new JSONObject(jsonResponse)).optJSONArray("result");
 
-            Log.d(LOG_TAG, "updateAllStakeEvents #: " + cachedAllEvents.length());
+//            cachedAllEvents = (new JSONObject(jsonResponse)).optJSONArray("result");
+            JSONArray events = (new JSONObject(jsonResponse)).optJSONArray("result");
 
-            // sort by timestamp
-            ArrayList<JSONObject> listEvents = new ArrayList<JSONObject>();
-            for (int i=0; i < cachedAllEvents.length(); i++) {
-                listEvents.add(cachedAllEvents.getJSONObject(i));
+            Log.d(LOG_TAG, "updateStakeEventsByTopic index:" + topicIndex + "/#:" + events.length());
+
+            if (eventUpdatedFlag[topicIndex] == false) {
+                for (int i = 0; i < events.length(); i++) {
+                    cachedAllEvents.put(events.optJSONObject(i));
+                }
+                eventUpdatedFlag[topicIndex] = true;
             }
-            Collections.sort(listEvents, new MyJSONComparator());
-            cachedAllEvents = new JSONArray(listEvents);
-            Log.d(LOG_TAG, cachedAllEvents.toString());
+
+            if (eventUpdatedFlag[0])  {
+                if (eventUpdatedFlag[1]) {
+                    if (eventUpdatedFlag[2]) {
+                        // sort by timestamp
+                        ArrayList<JSONObject> listEvents = new ArrayList<JSONObject>();
+                        for (int i=0; i < cachedAllEvents.length(); i++) {
+                            listEvents.add(cachedAllEvents.getJSONObject(i));
+                        }
+                        Collections.sort(listEvents, new MyJSONComparator());
+                        cachedAllEvents = new JSONArray(listEvents);
+                        Log.d(LOG_TAG, "updateStakeEventsByTopic: All done. length:" + cachedAllEvents.length());
+                    }
+                }
+            }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

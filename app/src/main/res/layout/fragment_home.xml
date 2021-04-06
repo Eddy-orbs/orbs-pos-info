@@ -6,15 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
+    <TextView
+        android:id="@+id/button_to_analytics"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/swipe_layout"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        style="@style/TextBasic"
+        android:background="@color/button"
+        android:padding="10dp"
+        android:textAllCaps="false"
+        android:text="@string/home_bottom_msg"
+        app:layout_constraintVertical_bias="1"/>
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/button_to_analytics"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_to_analytics"
         app:layout_constraintVertical_bias="1.0">
 
         <ScrollView
@@ -289,18 +304,4 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <TextView
-        android:id="@+id/button_to_analytics"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/swipe_layout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        style="@style/ButtonTheme"
-        android:background="@color/button"
-        android:padding="10dp"
-        android:textAllCaps="false"
-        android:text="@string/home_bottom_msg"
-        app:layout_constraintVertical_bias="1"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

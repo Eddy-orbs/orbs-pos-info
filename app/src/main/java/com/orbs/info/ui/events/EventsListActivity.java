@@ -57,7 +57,7 @@ public class EventsListActivity extends AppCompatActivity {
         } else {
             title += getString(R.string.list_title_withdrew);
         }
-        title += getString(R.string.list_title_footer);
+        title += " " + getString(R.string.list_title_footer);
         getSupportActionBar().setTitle(title);
 
         // TODO: change font and color in Actionbar

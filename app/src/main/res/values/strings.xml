@@ -26,7 +26,7 @@
     <string name="events_btn_stake">REVIEW LIST OF STAKE EVENTS</string>
     <string name="events_btn_unstake">REVIEW LIST OF UNSTAKE EVENTS</string>
     <string name="events_btn_withdrew">REVIEW LIST OF WITHDRAWN EVENTS</string>
-    <string name="calc_top_msg">NOTE: This calculation reflects current status and does not guarantee in real universe.\n* Pull down screen to refresh the latest info</string>
+    <string name="calc_top_msg">NOTE: This calculation reflects current status and does not guarantee in real universe. * Pull down screen to refresh the latest info</string>
     <string name="calc_input_amounts">Input Amounts to stake</string>
     <string name="calc_week">Rewards rate every WEEK</string>
     <string name="calc_year">Rewards rate every YEAR</string>
@@ -45,7 +45,7 @@
     <string name="list_title_staked">STAKED</string>
     <string name="list_title_unstaked">UNSTAKED</string>
     <string name="list_title_withdrew">WITHDREW </string>
-    <string name="list_title_footer">" Events list"</string>
+    <string name="list_title_footer">Events list</string>
     <string name="common_toast_confirm_back_key">Please press back key again to exit</string>
 
 </resources>

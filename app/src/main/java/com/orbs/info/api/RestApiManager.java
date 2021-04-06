@@ -1,8 +1,6 @@
 package com.orbs.info.api;
 
 import android.content.Context;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 
 //import com.orbs.pos.Feature;
@@ -124,11 +122,17 @@ public class RestApiManager {
     }
 
     public void getAllStakingEvents(long targetBlock) {
+        getStakingEventsByTopic(API.CONTRACT_STAKE_TOPIC_STAKE, targetBlock, 0);
+        getStakingEventsByTopic(API.CONTRACT_STAKE_TOPIC_UNSTAKE, targetBlock, 1);
+        getStakingEventsByTopic(API.CONTRACT_STAKE_TOPIC_WITHDREW, targetBlock, 2);
+    }
+
+    public void getStakingEventsByTopic(String topic0, long targetBlock, int topicIndex) {
         JsonHttpResponseHandler httpResponseHandler = new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 Log.d(LOG_TAG, "getAllStakingEvents: onSuccess");
-                InfoProvider.getInstance().updateAllStakeEvents(response.toString());
+                InfoProvider.getInstance().updateStakeEventsByTopic(response.toString(), topicIndex);
             }
 
             @Override
@@ -142,6 +146,7 @@ public class RestApiManager {
         params.put("action", "getLogs");
         params.put("address", API.CONTRACT_STAKE);
         params.put("apikey", API.ETHERSCAN_API_KEY);
+        params.put("topic0", topic0);
         params.put("module", "logs");
         params.put("toBlock", "latest");
         params.put("fromBlock", targetBlock);
