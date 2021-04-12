@@ -34,9 +34,9 @@
     <string name="list_amount">数量</string>
     <string name="list_time">時間（＃ブロック）</string>
     <string name="list_title_footer">リスト</string>
-    <string name="list_title_staked">ステーキング済み</string>
-    <string name="list_title_unstaked">ステーキングを解除</string>
-    <string name="list_title_withdrew">出金する</string>
+    <string name="list_title_staked">済み（ステーキング）</string>
+    <string name="list_title_unstaked">解除（ステーキング）</string>
+    <string name="list_title_withdrew">出金</string>
     <string name="list_top_header">%d個の履歴が過去%d日間でありました</string>
     <string name="list_txid">TxID</string>
     <string name="loading_app_update_failed">アプリを更新して、再度実行してください</string>

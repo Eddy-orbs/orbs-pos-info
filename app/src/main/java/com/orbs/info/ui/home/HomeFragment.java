@@ -50,7 +50,6 @@ public class HomeFragment extends Fragment {
         }, 0);
 
         setButtonListener();
-
         setPullDownReloadListener();
 
         return root;
@@ -173,7 +172,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onRefresh() {
                 Log.d(LOG_TAG, "SwipeRefresh - onRefresh()");
-                loadInfo(true);
+                InfoProvider.getInstance().loadAllInfo();
             }
         });
     }

@@ -47,7 +47,7 @@
     <string name="list_title_staked">스테이킹</string>
     <string name="list_title_unstaked">언락</string>
     <string name="list_title_withdrew">회수하기</string>
-    <string name="list_title_footer">" 리스트"</string>
+    <string name="list_title_footer">리스트</string>
     <string name="common_toast_confirm_back_key">앱을 종료하려면 뒤로가기를 한 번 더 누르세요</string>
 
 </resources>

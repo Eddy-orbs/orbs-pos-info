@@ -258,7 +258,8 @@ public class EventsFragment extends Fragment {
             @Override
             public void onRefresh() {
                 Log.d(LOG_TAG, "SwipeRefresh - onRefresh()");
-                InfoProvider.getInstance().getEventsData(true);
+                // InfoProvider.getInstance().getEventsData(true);
+                InfoProvider.getInstance().loadAllInfo();
             }
         });
     }

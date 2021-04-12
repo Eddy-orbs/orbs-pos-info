@@ -52,7 +52,7 @@ public class EventsListAdapter extends ArrayAdapter<JSONObject> {
         JSONObject eventItem = getItem(position);
         final int currentVisible = visibleMap.getOrDefault(position, View.GONE);
 
-        Log.d(LOG_TAG, "getView() - " + position + " / " + currentVisible);
+        // Log.d(LOG_TAG, "getView() - " + position + " / " + currentVisible);
 
         TextView textTitle1 = convertView.findViewById(R.id.text_title_1);
         TextView textTitle2 = convertView.findViewById(R.id.text_title_2);
