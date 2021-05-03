@@ -35,8 +35,8 @@ public class InfoProvider {
     private long cachedTotalCommitteeStake = 0;
     private double cachedRewardsRate = 0;
 
-    private double cachedETHprice = 0;
-    private double cachedORBSprice = 0;
+    private JSONObject cachedETHprice;
+    private JSONObject cachedORBSprice;
     private int cachedGasFee = 0;
 
     private Handler homeCallback = null;
@@ -158,13 +158,13 @@ public class InfoProvider {
         } else {
             if (calculatorCallback != null) {
                 Message msg = new Message();
-                msg.what = CalculationFragment.GET_ETH_USD_PRICE;
-                msg.obj = (Double) cachedETHprice;
+                msg.what = CalculationFragment.GET_ETH_PRICE;
+                msg.obj = (JSONObject) cachedETHprice;
                 calculatorCallback.sendMessage(msg);
 
                 Message msg2 = new Message();
-                msg2.what = CalculationFragment.GET_ORBS_USD_PRICE;
-                msg2.obj = (Double) cachedORBSprice;
+                msg2.what = CalculationFragment.GET_ORBS_PRICE;
+                msg2.obj = (JSONObject) cachedORBSprice;
                 calculatorCallback.sendMessage(msg2);
             }
         }
@@ -189,19 +189,20 @@ public class InfoProvider {
         }
     }
 
-    public void updateTokenPrice(double eth, double orbs) {
+    public void updateTokenPrice(JSONObject eth, JSONObject orbs) {
         cachedETHprice = eth;
         cachedORBSprice = orbs;
 
         if (calculatorCallback != null) {
             Message msg = new Message();
-            msg.what = CalculationFragment.GET_ETH_USD_PRICE;
-            msg.obj = (Double) cachedETHprice;
+            msg.what = CalculationFragment.GET_ETH_PRICE;
+            msg.obj = (JSONObject) cachedETHprice;
             calculatorCallback.sendMessage(msg);
 
-//            msg.what = CalculationFragment.GET_ORBS_USD_PRICE;
-//            msg.obj = (Double) cachedORBSprice;
-//            calculatorCallback.sendMessage(msg);
+            Message msg2 = new Message();
+            msg2.what = CalculationFragment.GET_ORBS_PRICE;
+            msg2.obj = (JSONObject) cachedORBSprice;
+            calculatorCallback.sendMessage(msg2);
         }
     }
 

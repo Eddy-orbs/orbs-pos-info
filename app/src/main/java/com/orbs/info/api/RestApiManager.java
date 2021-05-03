@@ -158,13 +158,18 @@ public class RestApiManager {
         JsonHttpResponseHandler httpResponseHandler = new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                double eth, orbs;
-                eth = response.optJSONObject("ETH").optDouble("USD");
-                orbs = response.optJSONObject("ORBS").optDouble("USD");
+//                double eth, orbs;
+//                eth = response.optJSONObject("ETH").optDouble("USD");
+//                orbs = response.optJSONObject("ORBS").optDouble("USD");
+//                Log.d(LOG_TAG, "getAllStakingEvents: onSuccess - ETHUSD:" + eth + "/ ORBSUSD:" + orbs);
+//                InfoProvider.getInstance().updateTokenPrice(eth, orbs);
 
-                Log.d(LOG_TAG, "getAllStakingEvents: onSuccess - ETHUSD:" + eth + "/ ORBSUSD:" + orbs);
+                JSONObject jsonEthPrice, jsonOrbsPrice;
+                jsonEthPrice = response.optJSONObject("ETH");
+                jsonOrbsPrice = response.optJSONObject("ORBS");
+                Log.d(LOG_TAG, "getAllStakingEvents: onSuccess - ETH:" + jsonEthPrice + "/ ORBS:" + jsonOrbsPrice);
+                InfoProvider.getInstance().updateTokenPrice(jsonEthPrice, jsonOrbsPrice);
 
-                InfoProvider.getInstance().updateTokenPrice(eth, orbs);
             }
 
             @Override

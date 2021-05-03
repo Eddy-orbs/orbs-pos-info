@@ -1,7 +1,5 @@
 package com.orbs.info.ui.calculation;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -14,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -24,20 +21,22 @@ import com.orbs.info.R;
 import com.orbs.info.api.InfoProvider;
 import com.orbs.info.util.Util;
 
+import org.json.JSONObject;
+
 import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.util.Locale;
 
 public class CalculationFragment extends Fragment {
     private static final String LOG_TAG = "CalculationFragment";
 
-    public static final int GET_ETH_USD_PRICE = 1000;
-    public static final int GET_ORBS_USD_PRICE = 1001;
+    public static final int GET_ETH_PRICE = 1000;
+    public static final int GET_ORBS_PRICE = 1001;
     public static final int GET_GAS_FEE = 1002;
 
     private View root;
 
-    private double ethPriceUsd;
-    private double orbsPriceUsd;
+    private JSONObject ethPrice;
+    private JSONObject orbsPrice;
     private int currentGasFee;
 
     private double rewardsRate;
@@ -107,10 +106,22 @@ public class CalculationFragment extends Fragment {
         TextView yearOrbs = root.findViewById(R.id.text_rate_year);
         TextView yearUsd = root.findViewById(R.id.text_rate_year_usd);
 
+        Locale locale = Locale.getDefault();
+        String currency = "USD";
+        int decimals = 2;
+        if (locale.equals(Locale.KOREA)) {
+            currency = "KRW";
+            decimals = 0;
+        } else if (locale.equals(Locale.JAPAN)) {
+            currency = "JPY";
+            decimals = 0;
+        }
+        double orbsPriceNum = (orbsPrice == null) ? 0 : orbsPrice.optDouble(currency, 0);
+
         weekOrbs.setText(Util.formatToString(BigDecimal.valueOf(rewardsWeek), 2));
-        weekUsd.setText("(" + Util.formatToString(BigDecimal.valueOf(rewardsWeek * orbsPriceUsd), 2) + " USD)");
+        weekUsd.setText("(" + Util.formatToString(BigDecimal.valueOf(rewardsWeek * orbsPriceNum), decimals) + " " + currency + ")");
         yearOrbs.setText(Util.formatToString(BigDecimal.valueOf(rewardsYear), 2));
-        yearUsd.setText("(" + Util.formatToString(BigDecimal.valueOf(rewardsYear * orbsPriceUsd), 2) + " USD)");
+        yearUsd.setText("(" + Util.formatToString(BigDecimal.valueOf(rewardsYear * orbsPriceNum), decimals) + " " + currency + ")");
 
         // Do calculate fees and display
         TextView gasGwei = root.findViewById(R.id.text_gwei);
@@ -135,7 +146,10 @@ public class CalculationFragment extends Fragment {
         for (int i=0; i < 5; i++) {
             double gasFee = (double)gasCostBase[i] * (double)currentGasFee / (double)1000000000;
             arrayGas[i].setText(Util.formatToString(BigDecimal.valueOf(gasFee), 6));
-            arrayGasUsd[i].setText("(" + Util.formatToString(BigDecimal.valueOf(gasFee * ethPriceUsd), 2) + " USD)");
+
+            double ethPriceNum = (ethPrice == null) ? 0 : ethPrice.optDouble(currency, 0);
+
+            arrayGasUsd[i].setText("(" + Util.formatToString(BigDecimal.valueOf(gasFee * ethPriceNum), decimals) + " " + currency + ")");
         }
     }
 
@@ -143,11 +157,11 @@ public class CalculationFragment extends Fragment {
         @Override
         public boolean handleMessage(Message msg) {
             switch (msg.what) {
-                case GET_ETH_USD_PRICE:
-                    ethPriceUsd = (Double) (msg.obj);
+                case GET_ETH_PRICE:
+                    ethPrice = (JSONObject) (msg.obj);
                     break;
-                case GET_ORBS_USD_PRICE:
-                    orbsPriceUsd = (Double) (msg.obj);
+                case GET_ORBS_PRICE:
+                    orbsPrice = (JSONObject) (msg.obj);
                     break;
                 case GET_GAS_FEE:
                     currentGasFee = msg.arg1;
