@@ -28,7 +28,7 @@
     <string name="events_btn_stake">스테이킹 목록 확인</string>
     <string name="events_btn_unstake">언락 목록 확인</string>
     <string name="events_btn_withdrew">회수 목록 확인</string>
-    <string name="calc_top_msg">알림: 여기서의 계산 결과는 실제 참여시의 보상과 차이가 있을 수 있습니다. 화면을 아래로 당기면 최신 정보를 새로고침합니다.</string>
+    <string name="calc_top_msg">알림: 여기서의 계산 결과는 실제 참여시의 보상과 차이가 있을 수 있습니다. 화면을 아래로 당기면 최신 정보를 업데이트 합니다.</string>
     <string name="calc_input_amounts">스테이킹 예상 수량 입력</string>
     <string name="calc_week">매주 받게되는 보상 수량</string>
     <string name="calc_year">1년동안 받게되는 예상 보상 토큰 수</string>

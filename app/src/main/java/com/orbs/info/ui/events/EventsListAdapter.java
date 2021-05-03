@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.TimeZone;
 
 public class EventsListAdapter extends ArrayAdapter<JSONObject> {
 
@@ -66,7 +67,7 @@ public class EventsListAdapter extends ArrayAdapter<JSONObject> {
         String jsonTimeStamp = eventItem.optString("timeStamp").substring(2); // remove "0x"
         String jsonBlock = eventItem.optString("blockNumber").substring(2); // remove "0x"
         String timeString = getDate((new BigInteger(jsonTimeStamp, 16)).longValue());
-        String timeString2 = timeString + " UTC (# " + (new BigInteger(jsonBlock, 16).intValue()) + ")";
+        String timeString2 = timeString + " #" + (new BigInteger(jsonBlock, 16).intValue());
 
         String topic0 = eventItem.optJSONArray("topics").optString(0);
         String data1 = eventItem.optString("data").substring(2,66);
@@ -142,9 +143,10 @@ public class EventsListAdapter extends ArrayAdapter<JSONObject> {
     }
 
     private String getDate(long time) {
-        Calendar cal = Calendar.getInstance(Locale.ENGLISH);
-        cal.setTimeInMillis(time * 1000);
-        String date = DateFormat.format("yyyy-MM-dd (hh:mm)", cal).toString();
+        TimeZone tz = TimeZone.getDefault();
+        Calendar cal = Calendar.getInstance(tz, Locale.getDefault());
+                cal.setTimeInMillis(time * 1000);
+        String date = DateFormat.format("yyyy-MM-dd (HH:mm)", cal).toString();
         return date;
     }
 
